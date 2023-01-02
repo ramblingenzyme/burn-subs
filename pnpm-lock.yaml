@@ -1,21 +1,12 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@vercel/ncc': ^0.36.0
   yargs: ^17.6.2
 
 dependencies:
   yargs: 17.6.2
 
-devDependencies:
-  '@vercel/ncc': 0.36.0
-
 packages:
-
-  /@vercel/ncc/0.36.0:
-    resolution: {integrity: sha512-/ZTUJ/ZkRt694k7KJNimgmHjtQcRuVwsST2Z6XfYveQIuBbHR+EqkTc1jfgPkQmMyk/vtpxo3nVxe8CNuau86A==}
-    hasBin: true
-    dev: true
 
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
