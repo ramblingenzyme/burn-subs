@@ -1,8 +1,9 @@
 {
   "name": "burn-subs",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "GPU accelerated subtitle hardcoding with ffmpeg",
+  "main": "src/index.mjs",
+  "bin": "./src/index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
