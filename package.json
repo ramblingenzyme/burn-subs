@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "shelljs": "^0.8.5",
     "yargs": "^17.6.2"
   },
   "devDependencies": {
