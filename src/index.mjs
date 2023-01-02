@@ -6,8 +6,12 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers"
 import child_process from "child_process";
 
+const encoders = {
+  "h264": "h264_nvenc",
+  "h265": "hevc_nvenc"
+}
 
-function runFfmpeg({ moviePath, subtitlePath, outputPath, gpuDecode = false, threads }) {
+function runFfmpeg({ moviePath, subtitlePath, outputPath, gpuDecode = false, threads, outputFormat }) {
   const command = [
     "ffmpeg",
     "-hide_banner",
@@ -16,7 +20,7 @@ function runFfmpeg({ moviePath, subtitlePath, outputPath, gpuDecode = false, thr
     ...(gpuDecode ? ["-c:v h264_cuvid"] : []),
     `-i "${moviePath}"`,
     "-c:a copy",
-    "-c:v h264_nvenc",
+    `-c:v ${encoders[outputFormat]}`,
     "-b:v 5.0M",
     `-vf "subtitles=${subtitlePath},hwupload_cuda"`,
     `"${outputPath}"`, 
@@ -45,6 +49,10 @@ function main() {
   const argv = yargs(hideBin(process.argv))
   .option("gpuDecode", {
     type: "boolean"
+  })
+  .option("outputFormat", {
+    default: "h264",
+    choices: ["h264", "h265"]
   })
   .option("threads", {
     alias: "t",
@@ -83,7 +91,8 @@ function main() {
     subtitlePath: argv.subtitles || getDefaultSubPath(argv._[0]),
     outputPath: argv.outputName || getDefaultOutputPath(argv._[0]),
     gpuDecode: argv.gpuDecode,
-    threads: argv.threads
+    threads: argv.threads,
+    outputFormat: argv.outputFormat
   })
 }
 
